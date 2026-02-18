@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fit Protocol – Dein Magazin für smarte Fitness & Ernährung</title>
+<meta name="description" content="The Fit Protocol: Evidenzbasierte Artikel zu Ernährung, Abnehmen und Wohlbefinden – für Frauen, die es richtig machen wollen.">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --purple:#6b4fbb;--purple-dark:#5038a0;--purple-bg:#ede8fa;
+  --pink:#e8386d;--pink-bg:#fdf0f5;
+  --text:#1a1a2e;--text-muted:#6b6b8a;--text-body:#3a3a5c;
+  --border:#e2ddf5;--white:#fff;--light-bg:#f8f6ff;
+}
+body{font-family:'Nunito',sans-serif;background:var(--white);color:var(--text);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* TOP BAR */
+.top-bar{background:var(--purple);color:#fff;text-align:center;padding:8px 16px;font-size:12px;font-weight:700;letter-spacing:.04em}
+
+/* HEADER */
+.site-header{background:#fff;border-bottom:2px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.logo-main{font-size:20px;font-weight:900;color:var(--text);letter-spacing:.02em}
+.logo-sub{font-size:10px;font-weight:700;color:var(--purple);letter-spacing:.15em;text-transform:uppercase}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-size:14px;font-weight:700;color:var(--text-body);text-decoration:none;transition:color .2s}
+nav a:hover{color:var(--purple)}
+.nav-cta{background:var(--purple);color:#fff !important;padding:8px 18px;border-radius:50px;font-size:13px}
+.nav-cta:hover{background:var(--purple-dark) !important}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+.mobile-nav{display:none;position:fixed;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:20px 24px;flex-direction:column;gap:16px;z-index:99}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-size:16px;font-weight:700;color:var(--text-body);text-decoration:none}
+
+/* HERO */
+.hero{background:linear-gradient(150deg,var(--purple-bg) 0%,var(--pink-bg) 100%);padding:60px 24px}
+.hero-inner{max-width:800px;margin:0 auto;text-align:center}
+.hero-kicker{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);background:#fff;padding:5px 14px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-size:clamp(26px,5vw,48px);font-weight:900;line-height:1.15;color:var(--text);margin-bottom:16px}
+.hero h1 em{font-style:normal;color:var(--pink)}
+.hero p{font-size:16px;color:var(--text-body);max-width:560px;margin:0 auto}
+
+/* SECTION */
+.section{padding:60px 24px}
+.inner{max-width:1100px;margin:0 auto}
+.section-title{font-size:clamp(20px,3vw,28px);font-weight:900;color:var(--text);margin-bottom:8px}
+.section-sub{font-size:14px;color:var(--text-muted);margin-bottom:36px}
+.divider-line{height:2px;background:var(--border);margin-bottom:36px}
+
+/* ARTICLE GRID */
+.article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.article-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:box-shadow .2s,transform .2s;text-decoration:none;color:inherit;display:block}
+.article-card:hover{box-shadow:0 8px 32px rgba(107,79,187,.14);transform:translateY(-3px)}
+.card-img{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:48px;font-weight:900}
+.card-img.purple{background:linear-gradient(135deg,var(--purple-bg),#d6ccf5)}
+.card-img.pink{background:linear-gradient(135deg,var(--pink-bg),#f9cad9)}
+.card-img.light{background:linear-gradient(135deg,var(--light-bg),#ddf0ff)}
+.card-body{padding:20px}
+.card-tag{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:8px}
+.card-title{font-size:17px;font-weight:900;line-height:1.3;color:var(--text);margin-bottom:8px}
+.card-excerpt{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:14px}
+.card-meta{font-size:12px;color:var(--text-muted);font-weight:600}
+.card-read{font-size:13px;font-weight:800;color:var(--purple);margin-top:12px;display:inline-block}
+
+/* FEATURED */
+.featured-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:20px;overflow:hidden;border:1px solid var(--border);text-decoration:none;color:inherit;transition:box-shadow .2s}
+.featured-card:hover{box-shadow:0 10px 40px rgba(107,79,187,.15)}
+.featured-img{background:linear-gradient(135deg,var(--purple-bg) 0%,var(--pink-bg) 100%);display:flex;align-items:center;justify-content:center;font-size:72px;min-height:260px}
+.featured-body{padding:36px 32px;display:flex;flex-direction:column;justify-content:center}
+.featured-tag{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:12px}
+.featured-title{font-size:clamp(20px,2.5vw,26px);font-weight:900;line-height:1.3;color:var(--text);margin-bottom:14px}
+.featured-excerpt{font-size:14px;color:var(--text-body);line-height:1.7;margin-bottom:20px}
+.featured-read{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:var(--purple)}
+
+/* NEWSLETTER */
+.newsletter{background:var(--purple);padding:60px 24px;text-align:center}
+.newsletter h2{font-size:clamp(20px,3vw,28px);font-weight:900;color:#fff;margin-bottom:10px}
+.newsletter p{font-size:15px;color:rgba(255,255,255,.8);margin-bottom:28px}
+.nl-form{display:flex;gap:10px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.nl-input{flex:1;min-width:200px;padding:14px 18px;border-radius:50px;border:none;font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;outline:none}
+.nl-btn{background:var(--pink);color:#fff;border:none;padding:14px 24px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;letter-spacing:.04em;cursor:pointer;white-space:nowrap;transition:background .2s}
+.nl-btn:hover{background:#c9255a}
+
+/* FOOTER */
+footer{background:#1a1a2e;color:rgba(255,255,255,.7);padding:40px 24px 24px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;margin-bottom:32px;flex-wrap:wrap}
+.footer-brand .logo-main{color:#fff}
+.footer-brand .logo-sub{color:rgba(255,255,255,.5)}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);margin-top:8px;max-width:260px;line-height:1.6}
+.footer-links{display:flex;flex-direction:column;gap:8px}
+.footer-links h4{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:4px}
+.footer-links a{font-size:14px;font-weight:600;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,.3)}
+.footer-legal{display:flex;gap:20px}
+.footer-legal a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none}
+.footer-legal a:hover{color:rgba(255,255,255,.8)}
+
+@media(max-width:900px){
+  .article-grid{grid-template-columns:1fr 1fr}
+  .featured-card{grid-template-columns:1fr}
+  .featured-img{min-height:180px}
+}
+@media(max-width:600px){
+  .article-grid{grid-template-columns:1fr}
+  nav{display:none}
+  .hamburger{display:flex}
+  .hero{padding:40px 20px}
+  .section{padding:40px 20px}
+  .footer-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">Evidenzbasiert · Praxisnah · Für Frauen, die es wirklich wollen</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span class="logo-main">THE FIT PROTOCOL</span>
+      <span class="logo-sub">Magazin</span>
+    </a>
+    <nav>
+      <a href="/">Magazin</a>
+      <a href="/ueber-uns/">Über uns</a>
+      <a href="https://magazin.thefitprotocol.de/heisshunger-quiz/lp/" class="nav-cta">Zum Quiz →</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="/">Magazin</a>
+  <a href="/ueber-uns/">Über uns</a>
+  <a href="https://magazin.thefitprotocol.de/heisshunger-quiz/lp/">Zum Quiz →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-kicker">Gesundheit · Ernährung · Wohlbefinden</span>
+    <h1>Smarter abnehmen.<br><em>Ohne Diät-Stress.</em></h1>
+    <p>The Fit Protocol liefert dir evidenzbasierte Artikel und Tools, damit du endlich verstehst, warum Diäten scheitern – und was wirklich funktioniert.</p>
+  </div>
+</section>
+
+<!-- FEATURED ARTICLE -->
+<section class="section" style="background:var(--light-bg)">
+  <div class="inner">
+    <p class="section-title">Empfohlen</p>
+    <p class="section-sub">Der Artikel, der alles erklärt</p>
+
+    <a href="/artikel/heisshunger-ursachen/" class="featured-card">
+      <div class="featured-img">🍫</div>
+      <div class="featured-body">
+        <p class="featured-tag">Ernährung · Lesezeit 6 Min.</p>
+        <h2 class="featured-title">7 Gründe, warum Frauen nach 35 plötzlich Heißhunger entwickeln – und was wirklich dahintersteckt</h2>
+        <p class="featured-excerpt">Wenn Heißhunger auf Süßes deinen Alltag dominiert, liegt das selten an mangelnder Disziplin. Die Ursachen sind biologisch – und du kannst sie gezielt angehen.</p>
+        <span class="featured-read">Artikel lesen →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ARTICLES GRID -->
+<section class="section bg-white">
+  <div class="inner">
+    <p class="section-title">Aktuelle Artikel</p>
+    <div class="divider-line"></div>
+
+    <div class="article-grid">
+
+      <a href="/artikel/fruehstueck-fallen/" class="article-card">
+        <div class="card-img pink">🥣</div>
+        <div class="card-body">
+          <p class="card-tag">Ernährung</p>
+          <h3 class="card-title">Diese 4 Frühstücksgewohnheiten sabotieren deine Diät – ohne dass du es merkst</h3>
+          <p class="card-excerpt">Müsli, Smoothie, Toast – klingt gesund, macht aber Heißhunger am Nachmittag. Was wirklich in deiner Morgenroutine passiert.</p>
+          <p class="card-meta">Lesezeit 5 Min. · The Fit Protocol</p>
+          <span class="card-read">Weiterlesen →</span>
+        </div>
+      </a>
+
+      <a href="/artikel/willenskraft-mythos/" class="article-card">
+        <div class="card-img light">🧠</div>
+        <div class="card-body">
+          <p class="card-tag">Psychologie</p>
+          <h3 class="card-title">Warum Willenskraft beim Abnehmen das falschste Konzept ist</h3>
+          <p class="card-excerpt">Wissenschaftler sind sich einig: Wer auf Willenskraft setzt, scheitert langfristig. Was stattdessen wirklich funktioniert.</p>
+          <p class="card-meta">Lesezeit 7 Min. · The Fit Protocol</p>
+          <span class="card-read">Weiterlesen →</span>
+        </div>
+      </a>
+
+      <a href="/artikel/heisshunger-ursachen/" class="article-card">
+        <div class="card-img purple">🔬</div>
+        <div class="card-body">
+          <p class="card-tag">Wissenschaft</p>
+          <h3 class="card-title">Was im Gehirn passiert, wenn du Heißhunger hast – erklärt von Neurowissenschaftlern</h3>
+          <p class="card-excerpt">Heißhunger ist keine Schwäche – er ist ein Überlebensmechanismus. Hier erfährst du, wie du ihn überlisten kannst.</p>
+          <p class="card-meta">Lesezeit 4 Min. · The Fit Protocol</p>
+          <span class="card-read">Weiterlesen →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>Bleib auf dem Laufenden</h2>
+  <p>Neue Artikel, Tipps und Erkenntnisse – direkt in dein Postfach. Kein Spam, jederzeit abbestellbar.</p>
+  <form class="nl-form" onsubmit="return false;">
+    <input class="nl-input" type="email" placeholder="Deine E-Mail-Adresse">
+    <button class="nl-btn" type="submit">Anmelden</button>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-main">THE FIT PROTOCOL</div>
+        <div class="logo-sub">Magazin</div>
+        <p>Evidenzbasiertes Wissen rund um Ernährung, Abnehmen und Wohlbefinden – speziell für Frauen.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Magazin</h4>
+        <a href="/artikel/heisshunger-ursachen/">Heißhunger & Ursachen</a>
+        <a href="/artikel/fruehstueck-fallen/">Frühstücksfallen</a>
+        <a href="/artikel/willenskraft-mythos/">Willenskraft-Mythos</a>
+      </div>
+      <div class="footer-links">
+        <h4>Seiten</h4>
+        <a href="/ueber-uns/">Über uns</a>
+        <a href="/impressum/">Impressum</a>
+        <a href="/datenschutz/">Datenschutz</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 The Fit Protocol. Alle Rechte vorbehalten.</p>
+      <div class="footer-legal">
+        <a href="/impressum/">Impressum</a>
+        <a href="/datenschutz/">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+</script>
+</body>
+</html>
